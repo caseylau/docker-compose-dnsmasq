@@ -1,10 +1,14 @@
+# https://hub.docker.com/r/andyshinn/dnsmasq/
+version: '2'
+services:
   dnsmasq:
-    image: "andyshinn/dnsmasq:latest"
+    image: andyshinn/dnsmasq
     ports:
       - "53:53/tcp"
       - "53:53/udp"
     cap_add:
       - NET_ADMIN
+    command: --log-facility=-
     volumes:
-      - ./etc/dnsmasq/dnsmasq.conf:/etc/dnsmasq.conf
-      - ./etc/dnsmasq/dnsmasq.d:/etc/dnsmasq.d
+      - ./data/dnsmasq.conf:/etc/dnsmasq.conf
+      - ./data/dnsmasq.d:/etc/dnsmasq.d
